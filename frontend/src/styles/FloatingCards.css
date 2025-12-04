@@ -1,0 +1,103 @@
+.hero-graphic {
+  position: relative;
+  width: 400px;
+  height: 400px;
+}
+
+.floating-card {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: #333;
+  animation: float 6s ease-in-out infinite;
+}
+
+.floating-card span {
+  font-size: 3rem;
+}
+
+.floating-card p {
+  font-weight: 600;
+  margin: 0;
+}
+
+.card-1 {
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s;
+}
+
+.card-2 {
+  top: 50%;
+  right: 10%;
+  animation-delay: 2s;
+}
+
+.card-3 {
+  bottom: 10%;
+  left: 30%;
+  animation-delay: 4s;
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes floatReverse {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(20px);
+  }
+}
+
+.reverse-animation .floating-card {
+  animation-name: floatReverse;
+}
+
+@media (max-width: 968px) {
+  .hero-graphic {
+    width: 300px;
+    height: 300px;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-graphic {
+    width: 250px;
+    height: 250px;
+  }
+
+  .floating-card {
+    padding: 1rem;
+  }
+
+  .floating-card span {
+    font-size: 2rem;
+  }
+
+  .floating-card p {
+    font-size: 0.85rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-graphic {
+    width: 200px;
+    height: 200px;
+  }
+}
+
