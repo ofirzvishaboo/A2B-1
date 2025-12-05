@@ -1,7 +1,7 @@
 from database import Base
 
 # Import all models here so Alembic can detect them
-from .example import Example
+from .contact_form import ContactForm
 
-__all__ = ["Base", "Example"]
+__all__ = ["Base", "ContactForm"]
 
