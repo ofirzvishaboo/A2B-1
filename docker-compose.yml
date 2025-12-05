@@ -1,0 +1,61 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: a2bdb
+    # Load variables from backend/.env
+    # Ensure POSTGRES_USER, POSTGRES_PASSWORD, POSTGRES_DB are in that file
+    env_file:
+      - ./backend/.env
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      # Use the variable names presumably in the .env file, or default to 'user'/'a2bdb' if not set
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-user} -d ${POSTGRES_DB:-a2bdb}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  api:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: a2b-api
+    ports:
+      - "8000:8000"
+    # Load env vars from file
+    env_file:
+      - ./backend/.env
+    environment:
+      # Override DB host to match service name "postgres"
+      # This allows using the same .env for local dev (localhost) and docker (postgres)
+      # Assuming DATABASE_URL in .env uses localhost, we override it here:
+      DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-user}:${POSTGRES_PASSWORD:-password}@postgres:5432/${POSTGRES_DB:-a2bdb}
+    depends_on:
+      postgres:
+        condition: service_healthy
+    volumes:
+      - ./backend:/app
+      # Exclude venv so container uses its own installed deps
+      - /app/.venv
+    command: uv run uvicorn main:app --host 0.0.0.0 --port 8000 --reload
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: a2b-frontend
+    ports:
+      - "5173:5173"
+    environment:
+      VITE_API_URL: http://localhost:8000
+    depends_on:
+      - api
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    command: npm run dev -- --host 0.0.0.0
+
+volumes:
+  postgres_data:

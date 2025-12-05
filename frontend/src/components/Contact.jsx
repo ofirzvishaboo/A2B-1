@@ -2,7 +2,7 @@ import { useState } from 'react'
 import ContactInfo from './ContactInfo'
 import { contactInfo } from '../config/contactData'
 import '../styles/Contact.css'
-
+import { BackendURL } from '../config/appData'
 function Contact() {
   const [formData, setFormData] = useState({
     name: '',
@@ -18,12 +18,20 @@ function Contact() {
     })
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    // Handle form submission here
-    console.log('Form submitted:', formData)
-    alert('Thank you for your interest! We will contact you soon.')
-    setFormData({ name: '', email: '', company: '', message: '' })
+    try {
+      const response = await fetch(`${BackendURL}/api/contact/`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      })
+      if (!response.ok) throw new Error('Failed to send contact form')
+      alert('Thank you for your interest! We will contact you soon.')
+      setFormData({ name: '', email: '', company: '', message: '' })
+    } catch (err) {
+      console.error('Error sending contact form:', err)
+    }
   }
 
   return (
