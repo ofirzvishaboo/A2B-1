@@ -1,14 +1,8 @@
 import '../styles/FloatingCards.css'
+import { floatingCards } from '../config/appData'
 
 function FloatingCards({ cards = [], reverse = false }) {
-  // Default cards if none provided
-  const defaultCards = [
-    { icon: '🤖', text: 'AI Chatbot' },
-    { icon: '📦', text: 'Inventory' },
-    { icon: '💬', text: 'WhatsApp' }
-  ]
-
-  const displayCards = cards.length > 0 ? cards : defaultCards
+  const displayCards = cards.length > 0 ? cards : floatingCards
 
   return (
     <div className={`hero-graphic ${reverse ? 'reverse-animation' : ''}`}>

@@ -1,5 +1,6 @@
 import '../styles/Hero.css'
 import FloatingCards from './FloatingCards'
+// import { floatingCardsReverse } from '../config/appData'
 
 function Hero() {
   return (
@@ -23,11 +24,7 @@ function Hero() {
         </div>
         <div className="hero-image">
           <FloatingCards />
-          <FloatingCards cards={[
-            { icon: '📊', text: 'Analytics' },
-            { icon: '⚡', text: 'Automation' },
-            { icon: '🔔', text: 'Notifications' },
-  ]} reverse={true} />
+          {/* <FloatingCards cards={floatingCardsReverse} reverse={true} /> */}
         </div>
       </div>
     </section>

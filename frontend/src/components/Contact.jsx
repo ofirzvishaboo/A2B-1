@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import ContactInfo from './ContactInfo'
+import { contactInfo } from '../config/contactData'
 import '../styles/Contact.css'
 
 function Contact() {
@@ -34,30 +36,7 @@ function Contact() {
           </p>
         </div>
         <div className="contact-content">
-          <div className="contact-info">
-            <h3>Contact Information</h3>
-            <div className="contact-item">
-              <span className="contact-icon">📧</span>
-              <div>
-                <h4>Email</h4>
-                <p>info@a2b.ai</p>
-              </div>
-            </div>
-            <div className="contact-item">
-              <span className="contact-icon">📱</span>
-              <div>
-                <h4>Phone</h4>
-                <p>+1 (555) 123-4567</p>
-              </div>
-            </div>
-            <div className="contact-item">
-              <span className="contact-icon">📍</span>
-              <div>
-                <h4>Office</h4>
-                <p>123 Business St, Suite 100<br />San Francisco, CA 94105</p>
-              </div>
-            </div>
-          </div>
+          <ContactInfo contactItems={contactInfo} />
           <form className="contact-form" onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="name">Name *</label>

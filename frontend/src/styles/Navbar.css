@@ -153,3 +153,18 @@
   }
 }
 
+@media (max-width: 480px) {
+  .navbar-container {
+    padding: 0 0.75rem;
+  }
+
+  .navbar-logo a {
+    font-size: 1.25rem;
+  }
+
+  .navbar-link {
+    font-size: 0.9375rem;
+    padding: 0.875rem 1rem;
+  }
+}
+
