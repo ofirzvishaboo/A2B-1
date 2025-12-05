@@ -6,6 +6,9 @@ COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 # Set working directory
 WORKDIR /app
 
+# Configure uv to use copy mode instead of hardlinks (fixes warning in Docker)
+ENV UV_LINK_MODE=copy
+
 # Copy project definition files first (for better caching)
 COPY pyproject.toml uv.lock ./
 
