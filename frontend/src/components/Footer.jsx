@@ -1,41 +1,28 @@
+import FooterSection from './FooterSection'
+import { footerData } from '../config/appData'
 import '../styles/Footer.css'
 
 function Footer() {
+  const { company, sections, copyright } = footerData
+
   return (
     <footer className="footer">
       <div className="container">
         <div className="footer-content">
           <div className="footer-section">
-            <h3 className="footer-logo">A2B</h3>
-            <p>AI-powered solutions for small businesses. Transform your operations with intelligent automation.</p>
+            <h3 className="footer-logo">{company.logo}</h3>
+            <p>{company.description}</p>
           </div>
-          <div className="footer-section">
-            <h4>Services</h4>
-            <ul>
-              <li><a href="#services">WhatsApp Chatbot</a></li>
-              <li><a href="#services">Inventory Management</a></li>
-              <li><a href="#services">AI Solutions</a></li>
-            </ul>
-          </div>
-          <div className="footer-section">
-            <h4>Company</h4>
-            <ul>
-              <li><a href="#about">About Us</a></li>
-              <li><a href="#contact">Contact</a></li>
-              <li><a href="#features">Features</a></li>
-            </ul>
-          </div>
-          <div className="footer-section">
-            <h4>Connect</h4>
-            <ul>
-              <li><a href="mailto:info@a2b.ai">Email</a></li>
-              <li><a href="#">LinkedIn</a></li>
-              <li><a href="#">Twitter</a></li>
-            </ul>
-          </div>
+          {sections.map((section, index) => (
+            <FooterSection
+              key={index}
+              title={section.title}
+              links={section.links}
+            />
+          ))}
         </div>
         <div className="footer-bottom">
-          <p>&copy; 2024 A2B. All rights reserved.</p>
+          <p>{copyright.text}</p>
         </div>
       </div>
     </footer>

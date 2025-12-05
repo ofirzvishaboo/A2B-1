@@ -112,12 +112,49 @@
 }
 
 @media (max-width: 480px) {
+  .features {
+    padding: 2.5rem 0;
+  }
+
+  .container {
+    padding: 0 0.75rem;
+  }
+
+  .section-header {
+    margin-bottom: 2rem;
+  }
+
   .section-title {
     font-size: 1.5rem;
+    margin-bottom: 0.75rem;
   }
 
   .section-subtitle {
-    font-size: 0.95rem;
+    font-size: 0.875rem;
+    padding: 0;
+  }
+
+  .features-grid {
+    gap: 1.25rem;
+  }
+
+  .feature-card {
+    padding: 1.25rem;
+  }
+
+  .feature-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .feature-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .feature-description {
+    font-size: 0.875rem;
+    line-height: 1.5;
   }
 }
 

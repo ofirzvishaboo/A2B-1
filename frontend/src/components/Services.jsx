@@ -1,42 +1,7 @@
 import '../styles/Services.css'
+import { services } from '../config/appData'
 
 function Services() {
-  const services = [
-    {
-      title: 'WhatsApp Business Integration',
-      description: 'Connect your business with customers on WhatsApp. Our AI chatbot handles inquiries, orders, and support seamlessly.',
-      features: [
-        '24/7 automated customer support',
-        'Order processing and tracking',
-        'Inventory queries',
-        'Multi-language support'
-      ],
-      price: 'Starting at $99/mo'
-    },
-    {
-      title: 'Inventory Management System',
-      description: 'Real-time inventory tracking with automated stock updates. Integrated with your sales channels for accurate availability.',
-      features: [
-        'Real-time stock tracking',
-        'Low stock alerts',
-        'Multi-channel sync',
-        'Automated reordering'
-      ],
-      price: 'Starting at $149/mo'
-    },
-    {
-      title: 'Complete AI Solution',
-      description: 'Full package including chatbot, inventory management, analytics, and custom integrations tailored to your business.',
-      features: [
-        'All features included',
-        'Custom integrations',
-        'Dedicated support',
-        'Monthly optimization'
-      ],
-      price: 'Custom pricing'
-    }
-  ]
-
   return (
     <section className="services" id="services">
       <div className="container">
