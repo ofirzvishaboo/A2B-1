@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from config import settings
 from database import engine, Base
 from routers.contact import router as contact_router
+from routers.chat import router as chat_router
 import uvicorn
 
 # Create FastAPI app
@@ -46,6 +47,7 @@ async def health_check():
 
 
 app.include_router(contact_router) # /api/contact
+app.include_router(chat_router) # /api/chat
 
 
 if __name__ == "__main__":
