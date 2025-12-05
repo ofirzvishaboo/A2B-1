@@ -1,4 +1,4 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from typing import Optional
 
 
@@ -10,10 +10,14 @@ class Settings(BaseSettings):
     API_V1_STR: str = "/api/v1"
     PROJECT_NAME: str = "Backend API"
 
-    class Config:
-        env_file = ".env"
-        case_sensitive = True
+    # Security
+    ADMIN_API_KEY: Optional[str] = None
+
+    model_config = SettingsConfigDict(
+        env_file=".env",
+        case_sensitive=True,
+        extra="ignore"
+    )
 
 
 settings = Settings()
-
